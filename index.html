@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natalie's H-E-B Deals</title>
+<style>
+:root{
+  --paper:#FBF8F3; --card:#FFFFFF; --ink:#1A1714; --muted:#6B635A; --faint:#9A9186;
+  --line:#E7DFD3; --line2:#F0EAE0;
+  --red:#C8102E; --red-soft:#F7E4E5; --green:#2E7D4F; --green-soft:#E4F0E8;
+  --shadow:0 1px 2px rgba(40,30,20,.05),0 6px 20px rgba(40,30,20,.05);
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#17140F; --card:#211C16; --ink:#F2EBDF; --muted:#A89A86; --faint:#7C7060;
+  --line:#322A20; --line2:#2A231B;
+  --red:#F06073; --red-soft:#3A1E22; --green:#6FCB95; --green-soft:#1C2C22;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}}
+:root[data-theme="light"]{
+  --paper:#FBF8F3; --card:#FFFFFF; --ink:#1A1714; --muted:#6B635A; --faint:#9A9186;
+  --line:#E7DFD3; --line2:#F0EAE0; --red:#C8102E; --red-soft:#F7E4E5; --green:#2E7D4F; --green-soft:#E4F0E8;
+  --shadow:0 1px 2px rgba(40,30,20,.05),0 6px 20px rgba(40,30,20,.05);
+}
+:root[data-theme="dark"]{
+  --paper:#17140F; --card:#211C16; --ink:#F2EBDF; --muted:#A89A86; --faint:#7C7060;
+  --line:#322A20; --line2:#2A231B; --red:#F06073; --red-soft:#3A1E22; --green:#6FCB95; --green-soft:#1C2C22;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+section.cluster,.section-title{scroll-margin-top:20px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.tabnum{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{border-bottom:1px solid var(--line);background:
+  linear-gradient(180deg,var(--card),transparent);}
+.brandline{display:flex;align-items:center;gap:13px;padding-top:30px}
+.logo{flex:none;line-height:0;filter:drop-shadow(0 3px 8px rgba(200,16,46,.28))}
+.brandtext{display:flex;flex-direction:column;gap:2px}
+.brandname{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--ink)}
+.brandline .k{font-size:11.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);font-weight:700}
+.brandline .k em{font-style:normal;color:var(--red);font-weight:800;
+  border-bottom:2px solid var(--red);padding-bottom:1px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.05;margin:14px 0 6px;letter-spacing:-.02em;text-wrap:balance}
+.lede{color:var(--muted);max-width:60ch;margin:0 0 22px}
+.lede b{color:var(--ink);font-weight:600}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px}
+.stat{background:var(--card);padding:14px 16px;text-decoration:none;color:inherit;display:block;
+  position:relative;transition:background .14s,transform .14s}
+.stat:hover{background:var(--red-soft)}
+.stat:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.stat .n{font-size:26px;font-weight:800;letter-spacing:-.02em}
+.stat .n.red{color:var(--red)} .stat .n.green{color:var(--green)}
+.stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-top:2px;
+  display:flex;align-items:center;gap:5px}
+.stat .go{color:var(--red);font-weight:800;font-size:14px;transition:transform .14s;display:inline-block}
+.stat:hover .go{transform:translateX(3px)}
+.asof{font-size:12px;color:var(--faint);padding:8px 2px 26px}
+
+main{padding:26px 0 60px}
+
+/* cluster */
+.cluster{margin:0 0 40px}
+.cluster-head{margin:0 0 16px}
+.cluster-tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+  font-weight:700;color:var(--red);background:var(--red-soft);padding:3px 9px;border-radius:20px}
+.cluster-head h2{font-size:26px;margin:10px 0 2px;letter-spacing:-.01em;text-wrap:balance}
+.cluster-sub{color:var(--muted);font-size:13px;margin:0}
+h3.sub{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  font-weight:700;margin:24px 0 12px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+h3.sub .sub-note{text-transform:none;letter-spacing:0;font-weight:400;color:var(--faint);font-size:12px}
+
+/* card */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.card.featured{border-color:var(--red);border-width:1.5px}
+.card-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.savings{display:flex;align-items:baseline;gap:5px;color:var(--green)}
+.save-amt{font-size:38px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.save-lbl{font-size:14px;font-weight:600;color:var(--muted)}
+.save-detail{border-left:1px solid var(--line);padding-left:14px}
+.pct{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.pct span{font-size:12px;font-weight:500;color:var(--muted)}
+.spend{font-size:12px;color:var(--muted);margin-top:1px}
+
+.chips{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.chip{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;text-decoration:none;
+  padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--paper);transition:border-color .12s}
+.chip:hover{border-color:var(--red)}
+.chip-reward{font-weight:700;font-size:13px}
+.chip-brands{font-size:12px;color:var(--muted);flex:1;min-width:80px}
+.chip-meta{font-size:11px;color:var(--faint);width:100%}
+.clip-on{color:var(--green);font-weight:600}
+.clip-off{color:var(--red);font-weight:600}
+
+.basket{margin-top:4px;border-top:1px solid var(--line2);padding-top:8px}
+.basket summary{font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;list-style:none;
+  padding:4px 0;user-select:none}
+.basket summary::-webkit-details-marker{display:none}
+.basket summary::before{content:"▸ ";color:var(--faint)}
+.basket[open] summary::before{content:"▾ "}
+.basket table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.basket th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--faint);font-weight:600;padding:3px 6px;border-bottom:1px solid var(--line)}
+.basket td{padding:5px 6px;border-bottom:1px solid var(--line2);vertical-align:top}
+.basket tr:last-child td{border-bottom:none}
+.pname{max-width:230px}
+.pbrand{color:var(--muted);font-size:12px}
+.pprice{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pcount{text-align:center;width:52px}
+.cnt{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;
+  padding:1px 6px;border-radius:12px;background:var(--line);color:var(--muted)}
+.cnt.cnt2{background:var(--green-soft);color:var(--green)}
+.cnt.cnt3{background:var(--red-soft);color:var(--red)}
+.basket-note{font-size:11px;color:var(--faint);margin:10px 2px 2px;line-height:1.45}
+
+/* reference */
+.ref{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
+.ref-scroll{overflow-x:auto}
+.ref table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}
+.ref th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+  font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0}
+.ref td{padding:9px 12px;border-bottom:1px solid var(--line2)}
+.ref tr:last-child td{border-bottom:none}
+.r-reward{font-weight:700;white-space:nowrap}
+.r-brands{color:var(--muted)}
+.r-n,.r-exp{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.r-stack{text-align:center;color:var(--green);font-weight:700}
+.r-link a{color:var(--red);text-decoration:none;font-weight:600;white-space:nowrap}
+
+.section-title{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  font-weight:700;margin:40px 0 12px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:30px}
+.how h3{margin:0 0 8px;font-size:15px}
+.how p{margin:0 0 8px;font-size:13.5px;color:var(--muted);max-width:70ch}
+.how b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);font-size:12px}
+
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .card-head{flex-wrap:wrap;gap:8px}
+  .save-detail{border-left:none;padding-left:0}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brandline">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 48 48" width="46" height="46" role="img" aria-label="Natalie's Deals logo">
+        <defs>
+          <linearGradient id="nlg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E5233B"/><stop offset="1" stop-color="#A50E22"/>
+          </linearGradient>
+        </defs>
+        <circle cx="24" cy="24" r="22" fill="url(#nlg)"/>
+        <circle cx="24" cy="24" r="18.3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="1.3 3.4"/>
+        <path d="M24 13.6c1.4-2.7 6.2-2 6.2 1.4 0 2.5-3.7 4.4-6.2 6-2.5-1.6-6.2-3.5-6.2-6 0-3.4 4.8-4.1 6.2-1.4z" fill="#fff" opacity=".95"/>
+        <text x="24" y="37" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="700" fill="#fff" text-anchor="middle">N</text>
+      </svg>
+    </span>
+    <span class="brandtext">
+      <span class="brandname">Natalie's H‑E‑B Deals</span>
+      <span class="k">Wife &amp; Mom &middot; <em>NOT</em> a roommate</span>
+    </span>
+  </div>
+  <h1>Hi Natalie — here's how to save the most at H‑E‑B.</h1>
+  <p class="lede">H‑E‑B lets one product count toward <b>several</b> "spend $X, save $Y" coupons at the same time. So if you build your basket right, the same items trigger multiple coupons and the discounts pile up. I scanned <b>all 935</b> of your live coupons — these are the baskets where they stack the hardest. <b>Tap any tile</b> to jump in.</p>
+  <div class="stats">
+    <a class="stat" href="#cluster-1"><div class="n red">$20.00</div><div class="l">Biggest stack <span class="go">›</span></div></a>
+    <a class="stat" href="#cluster-1"><div class="n green">45%</div><div class="l">Best discount <span class="go">›</span></div></a>
+    <a class="stat" href="#coupons"><div class="n">30</div><div class="l">Coupons live <span class="go">›</span></div></a>
+    <a class="stat" href="#how"><div class="n">372</div><div class="l">Multi‑coupon items <span class="go">›</span></div></a>
+  </div>
+  <div class="asof">Snapshot 2026-07-05 · from your H‑E‑B account · prices = H‑E‑B online each-price when I checked</div>
+</div></header>
+
+<main><div class="wrap">
+  <section class="cluster" id="cluster-1">
+          <div class="cluster-head">
+            <span class="cluster-tag">Stackable cluster 1</span>
+            <h2>Nexxus, Degree Men, Dove, Dove Men+Care, TRESemmé</h2>
+            <p class="cluster-sub">5 coupons in the biggest stack · 54 viable combinations found</p>
+          </div>
+          <h3 class="sub">Max stack <span class="sub-note">every compatible coupon on one basket</span></h3>
+          <div class="card featured">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$20.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">26.4%<span> saved</span></div>
+              <div class="spend">on a $75.86 basket · 5 coupons · 12 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Nexxus</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Degree Men</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84050047" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="basket" open>
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Energy</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Fresh</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Citrus</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Deep Moisture Body Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Original Clean</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Powder</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Advanced Care Antiperspirant Deodorant - Peach &amp; Chamomile Tea</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$6.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Nexxus Hydra-Light for Normal Weightless Moisture Conditioner</td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$13.58</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Nexxus Hydralight Weightless Moisture Shampoo</td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$13.58</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div>
+          <h3 class="sub">Focused sub-stacks <span class="sub-note">smaller baskets, higher % — pick what you'll actually buy</span></h3>
+            <div class="grid"><div class="card">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$12.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">44.7%<span> saved</span></div>
+              <div class="spend">on a $26.82 basket · 3 coupons · 6 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Degree Men</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="basket">
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Energy</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Citrus</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Deep Moisture Body Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div>
+<div class="card">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$10.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">36.8%<span> saved</span></div>
+              <div class="spend">on a $27.16 basket · 2 coupons · 2 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Nexxus</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="basket">
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Nexxus Hydra-Light for Normal Weightless Moisture Conditioner</td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$13.58</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Nexxus Hydralight Weightless Moisture Shampoo</td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$13.58</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div>
+<div class="card">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$12.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">32.7%<span> saved</span></div>
+              <div class="spend">on a $36.73 basket · 3 coupons · 9 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Dove</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="basket">
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Limited Edition FIFA Liquid Hand Soap - Palo Santo &amp; Sage Oil</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Care &amp; Protect Antibacterial Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Liquid Hand Soap - Limited Edition Watermelon &amp; Guava Nectar</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Deep Moisture Body Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div>
+<div class="card">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$9.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">30.5%<span> saved</span></div>
+              <div class="spend">on a $29.53 basket · 3 coupons · 7 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045217" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Dove</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="basket">
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Dove Limited Edition FIFA Liquid Hand Soap - Palo Santo &amp; Sage Oil</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Care &amp; Protect Antibacterial Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Liquid Hand Soap - Limited Edition Watermelon &amp; Guava Nectar</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Shampoo Anti-Frizz Oil Therapy</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.84</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Bond Strength + Peptide Complex Conditioner</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.84</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div></div>
+        </section>
+<section class="cluster" id="cluster-2">
+          <div class="cluster-head">
+            <span class="cluster-tag">Stackable cluster 2</span>
+            <h2>Plum Organics, Gerber, H-E-B</h2>
+            <p class="cluster-sub">2 coupons in the biggest stack · 1 viable combinations found</p>
+          </div>
+          <h3 class="sub">Max stack <span class="sub-note">every compatible coupon on one basket</span></h3>
+          <div class="card featured">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$13.00</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">26.0%<span> saved</span></div>
+              <div class="spend">on a $50.04 basket · 2 coupons · 28 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046369" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $10 (select items)</span>
+          <span class="chip-brands">Plum Organics</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84049537" target="_blank" rel="noopener">
+          <span class="chip-reward">$10 off $50 (select items)</span>
+          <span class="chip-brands">Gerber, H-E-B, Huggies</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          <details class="basket" open>
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Plum Organics Teensy Soft Fruit Snacks - Berry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$2.83</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Teensy Snacks with Puffed Quinoa - Berry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$2.83</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Blueberry &amp; Oatmeal</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.26</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Apple Kale &amp; Oatmeal</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.26</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bar - Peanut Butter &amp; Strawberry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.26</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Mighty Puffs - Carrot + Broccoli</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.98</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Mighty Puffs - Beet + Strawberry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.98</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Mighty Snack Bars - Blueberry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$5.16</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Mighty Snack Bars - Strawberry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$5.16</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">FruityU Organic Baby Food Pouch - Pear Sweet Potato &amp; Carrot</td>
+              <td class="pbrand">FruityU</td>
+              <td class="pprice">$0.78</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">FruityU Organic Baby Food Pouch - Apple Carrot Butternut Squash Chia</td>
+              <td class="pbrand">FruityU</td>
+              <td class="pprice">$0.78</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Travel Pack Wipes - Fragrance Free</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.78</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Banana Apple &amp; Plum</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Apple &amp; Mango</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Banana Apple Apricot</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Apple Mango &amp; Spinach</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Apple Oatmeal &amp; Cinnamon</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Pear Spinach Pouch</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Apple &amp; Banana</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Apple Pear &amp; Spinach</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Apple &amp; Sweet Potato</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Apple &amp; Carrot</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch – Banana Blueberry Apple &amp; Oatmeal</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Apple Banana Strawberry &amp; Blackberry</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Food Pouch - Apple</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.87</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Organics Food Pouch – Banana Kiwi</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.89</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Organics Food Pouch – Apple Oatmeal Cinnamon</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.89</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">H-E-B Baby Organics Food Pouch – Banana Butternut Squash</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$0.89</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+          </details>
+        </div>
+          
+        </section>
+
+  <div class="section-title" id="coupons">All your basket coupons right now (30)</div>
+  <div class="ref"><div class="ref-scroll"><table>
+    <thead><tr><th>Coupon</th><th>Top brands</th><th>Items</th><th>Status</th><th>In a stack</th><th>Expires</th><th></th></tr></thead>
+    <tbody><tr>
+          <td class="r-reward">$10.00 off $50.00</td>
+          <td class="r-brands">Gerber, H-E-B, Huggies, Beech-Nut</td>
+          <td class="r-n">900</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84049537" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$10.00 off $60.00</td>
+          <td class="r-brands">Ancient Nutrition</td>
+          <td class="r-n">8</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84051612" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $15.00</td>
+          <td class="r-brands">Nexxus</td>
+          <td class="r-n">40</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $15.00</td>
+          <td class="r-brands">Dove, Dove Men+Care, Baby Dove</td>
+          <td class="r-n">168</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $15.00</td>
+          <td class="r-brands">Coca-Cola, Sprite, Diet Coke, Powerade</td>
+          <td class="r-n">127</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84049492" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $15.00</td>
+          <td class="r-brands">Knorr, Seventh Generation, Hellmann&#x27;s, Lipton</td>
+          <td class="r-n">103</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84050492" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $15.00</td>
+          <td class="r-brands">Vitafusion, L&#x27;il Critters, Lil Critters</td>
+          <td class="r-n">25</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84052493" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $20.00</td>
+          <td class="r-brands">Harry&#x27;s</td>
+          <td class="r-n">26</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-28</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84033786" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $20.00</td>
+          <td class="r-brands">Quaker, Gamesa</td>
+          <td class="r-n">39</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84039617" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Dove, TRESemmé, Dove Men+Care, SheaMoisture</td>
+          <td class="r-n">673</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Sensodyne, Advil, Tums, Emergen-C</td>
+          <td class="r-n">244</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046229" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Poise, Depend</td>
+          <td class="r-n">33</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046376" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Old Spice, Pantene, Head &amp; Shoulders, Secret</td>
+          <td class="r-n">533</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046937" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Native</td>
+          <td class="r-n">81</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84047100" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $25.00</td>
+          <td class="r-brands">Banzai, H2OGO!, Aqua2ude, Zuru</td>
+          <td class="r-n">182</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84051338" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$5.00 off $30.00</td>
+          <td class="r-brands">H-E-B</td>
+          <td class="r-n">13</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84057450" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$4.00 off $12.00</td>
+          <td class="r-brands">Nature&#x27;s Truth</td>
+          <td class="r-n">96</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046626" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $8.00</td>
+          <td class="r-brands">Kraft, A1, Good Seasons, Heinz</td>
+          <td class="r-n">49</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84042095" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $10.00</td>
+          <td class="r-brands">Plum Organics</td>
+          <td class="r-n">10</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046369" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $12.00</td>
+          <td class="r-brands">Cantu</td>
+          <td class="r-n">43</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84037009" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $12.00</td>
+          <td class="r-brands">Band-Aid, Neosporin</td>
+          <td class="r-n">29</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84039945" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $12.00</td>
+          <td class="r-brands">Colgate, hello, Hello</td>
+          <td class="r-n">47</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84047388" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $15.00</td>
+          <td class="r-brands">Dove, Dove Men+Care</td>
+          <td class="r-n">83</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84050047" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$3.00 off $15.00</td>
+          <td class="r-brands">Sartori</td>
+          <td class="r-n">22</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84052044" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $6.00</td>
+          <td class="r-brands">Dove, Dove Men+Care</td>
+          <td class="r-n">82</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045217" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $6.00</td>
+          <td class="r-brands">Dove</td>
+          <td class="r-n">6</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $6.00</td>
+          <td class="r-brands">Degree Men</td>
+          <td class="r-n">4</td>
+          <td class="r-clip"><span class="clip-on">clipped</span></td>
+          <td class="r-stack">yes</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $8.00</td>
+          <td class="r-brands">H-E-B, Hill Country Fare, H-E-B Organics</td>
+          <td class="r-n">141</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84052038" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $10.00</td>
+          <td class="r-brands">Kotex</td>
+          <td class="r-n">29</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-14</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84046387" target="_blank" rel="noopener">open ›</a></td>
+        </tr>
+<tr>
+          <td class="r-reward">$2.00 off $10.00</td>
+          <td class="r-brands">Chick-fil-A</td>
+          <td class="r-n">14</td>
+          <td class="r-clip"><span class="clip-off">unclipped</span></td>
+          <td class="r-stack">—</td>
+          <td class="r-exp">2026-07-07</td>
+          <td class="r-link"><a href="https://www.heb.com/digital-coupon/coupon-detail/84057682" target="_blank" rel="noopener">open ›</a></td>
+        </tr></tbody>
+  </table></div></div>
+
+  <div class="section-title" id="how">How to actually use this</div>
+  <div class="how">
+    <h3>The move</h3>
+    <p>Every card above is <b>one HEB checkout</b>. Clip all the coupons in a card (tap each chip), add items that satisfy each coupon's dollar threshold, and every coupon fires on the same basket. Items marked <b>2×</b> or <b>3×</b> count toward that many coupons at once — those are the ones doing the heavy lifting.</p>
+    <p>The <b>sample basket</b> is just <b>one</b> cheapest way to reach the thresholds — swap in the specific products you actually want (open the coupon to see all eligible items). As long as your spend in each coupon's product set clears its threshold, the discount applies.</p>
+    <p><b>Standalone coupons</b> in the reference table don't stack with another basket coupon, but they're still good on their own and can layer item-level coupons on top.</p>
+  </div>
+</div></main>
+
+<footer><div class="wrap">Made for Natalie with love 💚 · coupons rotate weekly, so check back for a fresh set · snapshot 2026-07-05</div></footer>
+
+<script>
+// let the viewer's theme toggle win in both directions (data-theme is set by host)
+</script>
+</body>
+</html>
