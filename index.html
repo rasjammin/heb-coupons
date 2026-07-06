@@ -70,6 +70,23 @@ h1{font-size:clamp(28px,5vw,44px);line-height:1.05;margin:14px 0 6px;letter-spac
 
 main{padding:26px 0 60px}
 
+/* tabs */
+.tabbar{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:0 0 24px}
+.tab{appearance:none;background:none;border:none;cursor:pointer;font:inherit;
+  font-size:14px;font-weight:700;color:var(--muted);padding:11px 16px;border-radius:9px 9px 0 0;
+  position:relative;transition:color .12s,background .12s}
+.tab:hover{color:var(--ink);background:var(--card)}
+.tab.active{color:var(--red)}
+.tab.active::after{content:"";position:absolute;left:8px;right:8px;bottom:-1px;height:2.5px;
+  background:var(--red);border-radius:2px}
+.tab .tabnote{font-weight:600;color:var(--faint);font-size:11.5px}
+.tab.active .tabnote{color:var(--red)}
+.tabpanel[hidden]{display:none}
+.oop{color:var(--red)}
+.vcard.featured{border-color:var(--red)}
+.v-bonus{font-size:12px;color:var(--green);font-weight:600;background:var(--green-soft);
+  border-radius:8px;padding:7px 10px;margin-bottom:10px;line-height:1.4}
+
 /* cluster */
 .cluster{margin:0 0 40px}
 .cluster-head{margin:0 0 16px}
@@ -207,7 +224,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
 </div></header>
 
 <main><div class="wrap">
-  <section class="cluster" id="cluster-1">
+  <div class="tabbar" role="tablist">
+    <button class="tab active" id="tab-savings" role="tab" aria-selected="true" onclick="showTab('savings')">Biggest savings</button>
+    <button class="tab" id="tab-value" role="tab" aria-selected="false" onclick="showTab('value')">Lowest out-of-pocket <span class="tabnote">from $5.94</span></button>
+  </div>
+
+  <div class="tabpanel" id="panel-savings">
+    <section class="cluster" id="cluster-1">
           <div class="cluster-head">
             <span class="cluster-tag">Stackable cluster 1</span>
             <h2>Nexxus, Dove, Dove Men+Care, TRESemmé</h2>
@@ -255,13 +278,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <summary>Bonus coupons on these items <span class="bcount">+$8.50 extra</span></summary>
               <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
                   <span class="bval">$4.50</span>
-                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Prep &amp; Protect Heat Defense Spray</span></span>
-                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
-                  <span class="bval">$2.00</span>
-                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care Clean Comfort Deodorant Stick</span></span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Comb Thru Volume Finishing Mist</span></span>
                 </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
                   <span class="bval">$2.00</span>
-                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Restoring Body Wash - Coconut &amp; Cocoa Butter</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care 72 Hr Antiperspirant - Extra Fresh</span></span>
                 </a></div>
               <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>12 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
             </details>
@@ -270,7 +293,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
+              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
               <td class="pbrand">Dove</td>
               <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
@@ -280,8 +303,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Men+Care Sensitive Shield Antiperspirant Deodorant <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove Men+Care</td>
+              <td class="pname">Dove Indulge Body Wash - Warm Vanilla &amp; Sweet Cream <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Restoring Body Wash - Coconut &amp; Cocoa Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
@@ -290,22 +318,17 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$7.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$7.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Men+Care Clean Comfort Deodorant Stick <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Dove Men+Care 72 Hr Antiperspirant - Extra Fresh <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove Men+Care</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Dove Men+Care Antiperspirant Deodorant - Rustic Sandalwood <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
@@ -349,12 +372,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Nexxus XXL Volume Hair Spray Medium Hold <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
@@ -393,10 +416,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <summary>Bonus coupons on these items <span class="bcount">+$6.50 extra</span></summary>
               <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
                   <span class="bval">$4.50</span>
-                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Prep &amp; Protect Heat Defense Spray</span></span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Comb Thru Volume Finishing Mist</span></span>
                 </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
                   <span class="bval">$2.00</span>
-                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Relaxing Body Wash - Lavender Oil &amp; Chamomile</span></span>
                 </a></div>
               <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>13 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
             </details>
@@ -405,27 +428,27 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
+              <td class="pname">Dove Indulge Body Wash - Warm Vanilla &amp; Sweet Cream <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Restoring Body Wash - Coconut &amp; Cocoa Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
               <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Dove Relaxing Body Wash - Lavender Oil &amp; Chamomile <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$7.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Moisturizing Body Wash Limited Edition - Watermelon &amp; Guava Nectar <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$7.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
@@ -462,12 +485,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
         </a></div>
           <details class="bonus">
               <summary>Bonus coupons on these items <span class="bcount">+$4.00 extra</span></summary>
-              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
                   <span class="bval">$2.00</span>
-                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care Clean Comfort Deodorant Stick</span></span>
-                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Restoring Body Wash - Coconut &amp; Cocoa Butter</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
                   <span class="bval">$2.00</span>
-                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care 72 Hr Antiperspirant - Extra Fresh</span></span>
                 </a></div>
               <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>13 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
             </details>
@@ -476,8 +499,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Men+Care Sensitive Shield Antiperspirant Deodorant <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove Men+Care</td>
+              <td class="pname">Dove Indulge Body Wash - Warm Vanilla &amp; Sweet Cream <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Restoring Body Wash - Coconut &amp; Cocoa Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
@@ -486,17 +514,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
+              <td class="pname">Dove Men+Care 72 Hr Antiperspirant - Extra Fresh <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$7.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Men+Care Clean Comfort Deodorant Stick <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Dove Men+Care Antiperspirant Deodorant - Rustic Sandalwood <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove Men+Care</td>
               <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
@@ -544,7 +567,7 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
+              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
               <td class="pbrand">Dove</td>
               <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
@@ -554,12 +577,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Nexxus XXL Volume Hair Spray Medium Hold <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
               <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
@@ -619,17 +642,17 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Plum Organics Teensy Snacks with Puffed Quinoa - Berry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$2.83</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
               <td class="pname">Plum Organics Teensy Soft Fruit Snacks - Berry</td>
               <td class="pbrand">Plum Organics</td>
               <td class="pprice">$2.83</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Pumpkin Tree Organics Baby Food Pouch - Apple &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Plum Organics Teensy Snacks with Puffed Quinoa - Berry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$2.83</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Mango &amp; Orange <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Pumpkin Tree Organics</td>
               <td class="pprice">$1.97</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
@@ -639,17 +662,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$1.97</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
+              <td class="pname">Pumpkin Tree Organics Baby Food Pouch - Apple &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
               <td class="pname">Pumpkin Tree Organics Fruit Puree - Strawberry &amp; Banana <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Pumpkin Tree Organics</td>
-              <td class="pprice">$1.97</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Mango &amp; Orange <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Pumpkin Tree Organics</td>
-              <td class="pprice">$1.97</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Raspberry &amp; Blueberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Pumpkin Tree Organics</td>
               <td class="pprice">$1.97</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
@@ -659,17 +677,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$1.97</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
-              <td class="pname">Huggies Natural Care Sensitive Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Huggies</td>
-              <td class="pprice">$2.27</td>
+              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Raspberry &amp; Blueberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
-              <td class="pname">Huggies Extra Large Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Huggies</td>
-              <td class="pprice">$2.27</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">Huggies Simply Clean Baby Wipes - Unscented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Huggies Baby Wipes - Cucumber, Aloe and Vitamin E Scented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Huggies</td>
               <td class="pprice">$2.27</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
@@ -679,7 +692,17 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$2.27</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
-              <td class="pname">Huggies Baby Wipes - Cucumber, Aloe and Vitamin E Scented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Huggies Natural Care Sensitive Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Simply Clean Baby Wipes - Unscented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Extra Large Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Huggies</td>
               <td class="pprice">$2.27</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
@@ -699,6 +722,11 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$3.37</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
+              <td class="pname">Gerber Snacks for Baby Teethers - Mango &amp; Raspberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
               <td class="pname">Gerber Soft Baked Grain Bars - Strawberry Banana <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Gerber</td>
               <td class="pprice">$3.47</td>
@@ -709,17 +737,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$3.47</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
-              <td class="pname">Gerber Snacks for Baby Teethers - Banana &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
-              <td class="pbrand">Gerber</td>
-              <td class="pprice">$3.47</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
               <td class="pname">Gerber Snacks for Baby Teethers - Strawberry Apple &amp; Spinach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Gerber</td>
               <td class="pprice">$3.47</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
 <tr>
-              <td class="pname">Gerber Snacks for Baby Teethers - Mango &amp; Raspberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pname">Gerber Snacks for Baby Teethers - Banana &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Gerber</td>
               <td class="pprice">$3.47</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
@@ -734,6 +757,995 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
         </div>
           
         </section>
+  </div>
+
+  <div class="tabpanel" id="panel-value" hidden>
+    <section class="cluster">
+      <div class="cluster-head">
+        <span class="cluster-tag">Lowest out-of-pocket</span>
+        <h2>Cheapest ways to walk out the door</h2>
+        <p class="cluster-sub">Ranked by what you actually pay at the register — the low-threshold plays where a little spend plus coupons gets you the most for the least. Great for a quick cheap run.</p>
+      </div>
+      <div class="grid"><div class="card vcard featured">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$5.94</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">25.2%<span> off</span></div>
+              <div class="spend">retail $7.94 · save $2.00 · 2 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Dove</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket" open>
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td></tr>
+<tr><td class="pname">Dove Liquid Hand Soap - Limited Edition Watermelon &amp; Guava Nectar</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$3.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard featured">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$6.88</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">22.5%<span> off</span></div>
+              <div class="spend">retail $8.88 · save $2.00 · 9 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84052038" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $8 (select items)</span>
+          <span class="chip-brands">H-E-B, Hill Country Fare, H-E-B Organics</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket" open>
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Hill Country Fare Ranch Salad Dressing Mix</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$0.55</td></tr>
+<tr><td class="pname">Hill Country Fare Italian Salad Dressing Mix</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$0.55</td></tr>
+<tr><td class="pname">Hill Country Fare Ranch Dip Mix</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$0.55</td></tr>
+<tr><td class="pname">Hill Country Fare Louisiana Hot Sauce</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$0.95</td></tr>
+<tr><td class="pname">Hill Country Fare Coarse Yellow Mustard</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$0.98</td></tr>
+<tr><td class="pname">H-E-B Yellow Mustard</td>
+              <td class="pbrand">H-E-B</td>
+              <td class="pprice">$1.28</td></tr>
+<tr><td class="pname">Hill Country Fare Mild Green Chile Enchilada Sauce</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$1.34</td></tr>
+<tr><td class="pname">Hill Country Fare Mild Enchilada Sauce</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$1.34</td></tr>
+<tr><td class="pname">Hill Country Fare Medium Enchilada Sauce</td>
+              <td class="pbrand">Hill Country Fare</td>
+              <td class="pprice">$1.34</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$6.96</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">30.1%<span> off</span></div>
+              <div class="spend">retail $9.96 · save $3.00 · 8 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84042095" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $8 (select items)</span>
+          <span class="chip-brands">Kraft, A1, Good Seasons</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Kraft Classic Catalina Dressing</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Kraft Thousand Island Dressing</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Kraft Zesty Italian Dressing</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Kraft Classic Ranch Dressing</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Kraft Roka Blue Cheese Dressing</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Kraft Fruity &amp; Bright Raspberry Vinaigrette</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.00</td></tr>
+<tr><td class="pname">Good Seasons Italian Dry Salad Dressing and Recipe Mix</td>
+              <td class="pbrand">Good Seasons</td>
+              <td class="pprice">$1.98</td></tr>
+<tr><td class="pname">Kraft Sweet Brown Sugar Slow-Simmered Barbecue Sauce &amp; Dip</td>
+              <td class="pbrand">Kraft</td>
+              <td class="pprice">$1.98</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$7.68</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">20.7%<span> off</span></div>
+              <div class="spend">retail $9.68 · save $2.00 · 2 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045217" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Dove Ultra Care Conditioner - Coconut &amp; Hydration</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.84</td></tr>
+<tr><td class="pname">Dove Damage Therapy Daily Moisture Conditioner</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.84</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$7.94</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">20.1%<span> off</span></div>
+              <div class="spend">retail $9.94 · save $2.00 · 2 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $6 (select items)</span>
+          <span class="chip-brands">Degree Men</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Coconut</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Citrus</td>
+              <td class="pbrand">Degree Men</td>
+              <td class="pprice">$4.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$9.05</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">24.9%<span> off</span></div>
+              <div class="spend">retail $12.05 · save $3.00 · 3 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046387" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $10 (select items)</span>
+          <span class="chip-brands">Kotex</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $1 off</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Kotex Absorbent Wrapped Liners - Light Absorbency, Long Length</td>
+              <td class="pbrand">Kotex</td>
+              <td class="pprice">$1.09</td></tr>
+<tr><td class="pname">Kotex Daily Thong Wrapped Liners - Light Absorbency, Regular Length <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Kotex</td>
+              <td class="pprice">$3.99</td></tr>
+<tr><td class="pname">Kotex Absorbent Flat Liners, Extra Coverage <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Kotex</td>
+              <td class="pprice">$6.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$9.18</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">24.6%<span> off</span></div>
+              <div class="spend">retail $12.18 · save $3.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046369" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $10 (select items)</span>
+          <span class="chip-brands">Plum Organics</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Plum Organics Teensy Soft Fruit Snacks - Berry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$2.83</td></tr>
+<tr><td class="pname">Plum Organics Teensy Snacks with Puffed Quinoa - Berry</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$2.83</td></tr>
+<tr><td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Blueberry &amp; Oatmeal</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.26</td></tr>
+<tr><td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Apple Kale &amp; Oatmeal</td>
+              <td class="pbrand">Plum Organics</td>
+              <td class="pprice">$3.26</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$9.84</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">44.8%<span> off</span></div>
+              <div class="spend">retail $17.84 · save $8.00 · 3 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84047388" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $12 (select items)</span>
+          <span class="chip-brands">Colgate, hello, Hello</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $3 off, $2 off 2</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Colgate Optic White Anticavity Toothpaste - Fresh Mint Gel</td>
+              <td class="pbrand">Colgate</td>
+              <td class="pprice">$3.96</td></tr>
+<tr><td class="pname">Colgate Optic White Anticavity Toothpaste - Clean Mint</td>
+              <td class="pbrand">Colgate</td>
+              <td class="pprice">$3.96</td></tr>
+<tr><td class="pname">hello Kids Fluoride Free Toothpaste - Fresh Watermelon <span class="qty">×2</span> <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">hello</td>
+              <td class="pprice">$9.92</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$9.91</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">16.8%<span> off</span></div>
+              <div class="spend">retail $11.91 · save $2.00 · 3 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84057682" target="_blank" rel="noopener">
+          <span class="chip-reward">$2 off $10 (select items)</span>
+          <span class="chip-brands">Chick-fil-A</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Chick-fil-A BBQ Sauce</td>
+              <td class="pbrand">Chick-fil-A</td>
+              <td class="pprice">$3.97</td></tr>
+<tr><td class="pname">Chick-fil-A Polynesian Sauce</td>
+              <td class="pbrand">Chick-fil-A</td>
+              <td class="pprice">$3.97</td></tr>
+<tr><td class="pname">Chick-fil-A Honey Mustard Sauce</td>
+              <td class="pbrand">Chick-fil-A</td>
+              <td class="pprice">$3.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$10.04</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">23.0%<span> off</span></div>
+              <div class="spend">retail $13.04 · save $3.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84037009" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $12 (select items)</span>
+          <span class="chip-brands">Cantu</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Cantu Shea Butter Intensive Repair Deep Treatment Masque 1.75Z</td>
+              <td class="pbrand">Cantu</td>
+              <td class="pprice">$1.59</td></tr>
+<tr><td class="pname">Cantu Shea Butter Moisturizing Cream Shampoo 13.5 OZ</td>
+              <td class="pbrand">Cantu</td>
+              <td class="pprice">$3.74</td></tr>
+<tr><td class="pname">Cantu Shea Butter Moisturizing Rinse Out Conditioner 13.5 OZ</td>
+              <td class="pbrand">Cantu</td>
+              <td class="pprice">$3.74</td></tr>
+<tr><td class="pname">Cantu For Kids Curling Cream 8OZ</td>
+              <td class="pbrand">Cantu</td>
+              <td class="pprice">$3.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$10.39</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">27.8%<span> off</span></div>
+              <div class="spend">retail $14.39 · save $4.00 · 3 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046626" target="_blank" rel="noopener">
+          <span class="chip-reward">$4 off $12 (select items)</span>
+          <span class="chip-brands">Nature&#x27;s Truth</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Nature&#x27;s Truth Calcium Magnesium Zinc Caplets</td>
+              <td class="pbrand">Nature&#x27;s Truth</td>
+              <td class="pprice">$4.48</td></tr>
+<tr><td class="pname">Nature&#x27;s Truth Potassium Gluconate 595mg Caplets</td>
+              <td class="pbrand">Nature&#x27;s Truth</td>
+              <td class="pprice">$4.94</td></tr>
+<tr><td class="pname">Nature&#x27;s Truth Chewable Papaya Enzyme Tablets</td>
+              <td class="pbrand">Nature&#x27;s Truth</td>
+              <td class="pprice">$4.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$10.48</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">32.3%<span> off</span></div>
+              <div class="spend">retail $15.48 · save $5.00 · 13 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84050492" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Knorr, Seventh Generation, Hellmann&#x27;s</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Knorr Beef Cube Bouillon</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.08</td></tr>
+<tr><td class="pname">Knorr Cube Chicken Bouillon</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.08</td></tr>
+<tr><td class="pname">Knorr Tomato Chicken Cube Bouillon</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.08</td></tr>
+<tr><td class="pname">Knorr Shrimp Bouillon Cubes</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.08</td></tr>
+<tr><td class="pname">Knorr Sopa Star Pasta Tomato Soup Mix Pasta</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Sopa Alphabet Pasta Tomato Soup Mix</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Alfredo Broccoli Fettuccine Pasta Sides</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Sopa Pasta Soup Mix Chicken Noodle</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Rice Sides Cajun Chicken Rice &amp; Pasta Blend</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Pasta Sides Teriyaki Lo Mein Noodles</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Pasta Sides Creamy Chicken</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Rice Sides Chicken Broccoli with Long Grain Rice and Vermicelli Pasta</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr>
+<tr><td class="pname">Knorr Pasta Sides Butter &amp; Herb Fettuccine</td>
+              <td class="pbrand">Knorr</td>
+              <td class="pprice">$1.24</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$10.54</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">32.2%<span> off</span></div>
+              <div class="spend">retail $15.54 · save $5.00 · 11 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84049492" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Coca-Cola, Sprite, Diet Coke</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Barrilitos Fruit Punch Ponche De Frutas Flavored Soda Glass Bottle</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$0.88</td></tr>
+<tr><td class="pname">Barrilitos Apple Manzana Fruit Flavored Soda Glass Bottle</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$0.88</td></tr>
+<tr><td class="pname">Barrilitos Pineapple Piña Fruit Flavored Soda Glass Bottle</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$0.88</td></tr>
+<tr><td class="pname">Barrilitos Mandarin Mandarina Fruit Flavored Soda Glass Bottle</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$0.88</td></tr>
+<tr><td class="pname">Barrilitos Fruit Punch Ponche De Frutas Flavored Soda</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$1.58</td></tr>
+<tr><td class="pname">Barrilitos Pineapple Piña Fruit Flavored Soda</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$1.58</td></tr>
+<tr><td class="pname">Barrilitos Mandarin Mandarina Fruit Flavored Soda</td>
+              <td class="pbrand">Barrilitos</td>
+              <td class="pprice">$1.58</td></tr>
+<tr><td class="pname">Coca-Cola Zero Sugar Soda Soft Drink</td>
+              <td class="pbrand">Coca-Cola</td>
+              <td class="pprice">$1.82</td></tr>
+<tr><td class="pname">Coca-Cola Soda Soft Drink</td>
+              <td class="pbrand">Coca-Cola</td>
+              <td class="pprice">$1.82</td></tr>
+<tr><td class="pname">Coca-Cola Cherry Soda Soft Drink</td>
+              <td class="pbrand">Coca-Cola</td>
+              <td class="pprice">$1.82</td></tr>
+<tr><td class="pname">Diet Coke Soda Soft Drink</td>
+              <td class="pbrand">Diet Coke</td>
+              <td class="pprice">$1.82</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$10.70</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">27.2%<span> off</span></div>
+              <div class="spend">retail $14.70 · save $4.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84039945" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $12 (select items)</span>
+          <span class="chip-brands">Band-Aid, Neosporin</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $1 off</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Band-Aid Tru-Stay Plastic Bandages <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Band-Aid</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Band-Aid Tough Wrap Flexible Fabric Self-Adherent Wrap <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Band-Aid</td>
+              <td class="pprice">$3.88</td></tr>
+<tr><td class="pname">Band-Aid Hurt-Free Self-Adherent Post-Surgery Wound Wrap <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Band-Aid</td>
+              <td class="pprice">$3.88</td></tr>
+<tr><td class="pname">Band-Aid Paw Patrol Bandages - Assorted Sizes <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Band-Aid</td>
+              <td class="pprice">$3.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$11.84</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">29.7%<span> off</span></div>
+              <div class="spend">retail $16.84 · save $5.00 · 2 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84052493" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Vitafusion, L&#x27;il Critters, Lil Critters</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Lil Critters PJ Masks Power Heros Kids Melatonin Gummies</td>
+              <td class="pbrand">Lil Critters</td>
+              <td class="pprice">$7.48</td></tr>
+<tr><td class="pname">Vitafusion Extra Strength Sleep 5 mg Melatonin Gummies - Blackberry</td>
+              <td class="pbrand">Vitafusion</td>
+              <td class="pprice">$9.36</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$11.88</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">29.6%<span> off</span></div>
+              <div class="spend">retail $16.88 · save $5.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$1.97</td></tr>
+<tr><td class="pname">Dove Beauty Bar Soap - Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Dove Renewing Body Wash - Sensitive Skin</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Dove Men+Care Extra Fresh Body and Face Bar 2 pk</td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$4.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$17.03</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">15.0%<span> off</span></div>
+              <div class="spend">retail $20.03 · save $3.00 · 5 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84052044" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $15 (select items)</span>
+          <span class="chip-brands">Sartori</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Sartori Tomato Basil BellaVitano Cheese</td>
+              <td class="pbrand">Sartori</td>
+              <td class="pprice">$2.49</td></tr>
+<tr><td class="pname">Sartori Italian Herb Cheddar Cheese</td>
+              <td class="pbrand">Sartori</td>
+              <td class="pprice">$2.99</td></tr>
+<tr><td class="pname">Sartori MontAmore Cheddar Cheese</td>
+              <td class="pbrand">Sartori</td>
+              <td class="pprice">$3.99</td></tr>
+<tr><td class="pname">Sartori Classic Parmesan Cheese Wedge</td>
+              <td class="pbrand">Sartori</td>
+              <td class="pprice">$4.98</td></tr>
+<tr><td class="pname">Sartori Classic Grated Parmesan Cheese</td>
+              <td class="pbrand">Sartori</td>
+              <td class="pprice">$5.58</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$17.06</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">22.7%<span> off</span></div>
+              <div class="spend">retail $22.06 · save $5.00 · 8 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84039617" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $20 (select items)</span>
+          <span class="chip-brands">Quaker, Gamesa</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Gamesa Marias Cookies</td>
+              <td class="pbrand">Gamesa</td>
+              <td class="pprice">$1.27</td></tr>
+<tr><td class="pname">Quaker Instant Oatmeal - Apple &amp; Cinnamon</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Chewy 25 Less Sugar Chocolate Chip Granola Bars</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Instant Oatmeal - Original</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Instant Oatmeal - Flavor Variety Pack</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Instant Oatmeal - Raisin, Date &amp; Walnut</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Instant Oatmeal - Maple &amp; Brown Sugar</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Quaker Chewy Dipps Chocolatey Chocolate Chip Covered Granola Bars</td>
+              <td class="pbrand">Quaker</td>
+              <td class="pprice">$2.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$17.60</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">29.9%<span> off</span></div>
+              <div class="spend">retail $25.10 · save $7.50 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046376" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Poise, Depend</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $2.50 off</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Poise Incontinence Pads, Light Absorbency, Long Length <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Poise</td>
+              <td class="pprice">$5.97</td></tr>
+<tr><td class="pname">Poise Incontinence Pads, Moderate Absorbency, Regular Length <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Poise</td>
+              <td class="pprice">$5.97</td></tr>
+<tr><td class="pname">Poise Daily Incontinence Liners, 2 Drop Very Light Absorbency, Regular <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Poise</td>
+              <td class="pprice">$6.58</td></tr>
+<tr><td class="pname">Poise Microliners, Incontinence Liners, 1 Drop Lightest Absorbency, Long <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Poise</td>
+              <td class="pprice">$6.58</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$17.68</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">22.0%<span> off</span></div>
+              <div class="spend">retail $22.68 · save $5.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84033786" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $20 (select items)</span>
+          <span class="chip-brands">Harry&#x27;s</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-28</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Harry&#x27;s Extra Strength Antiperspirant - Wildlands</td>
+              <td class="pbrand">Harry&#x27;s</td>
+              <td class="pprice">$5.47</td></tr>
+<tr><td class="pname">Harry&#x27;s Extra Strength Odor &amp; Sweat Control Antiperspirant - Redwood</td>
+              <td class="pbrand">Harry&#x27;s</td>
+              <td class="pprice">$5.47</td></tr>
+<tr><td class="pname">Harry&#x27;s Odor &amp; Enhanced Sweat Control Extra Strength Antiperspirant - Stone</td>
+              <td class="pbrand">Harry&#x27;s</td>
+              <td class="pprice">$5.47</td></tr>
+<tr><td class="pname">Harry&#x27;s Men&#x27;s Shave Gel</td>
+              <td class="pbrand">Harry&#x27;s</td>
+              <td class="pprice">$6.27</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$17.89</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">30.9%<span> off</span></div>
+              <div class="spend">retail $25.89 · save $8.00 · 5 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84047100" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Native</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $3 off 2</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Native Travel Size Body Wash - Peach &amp; Nectar <span class="qty">×2</span> <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Native</td>
+              <td class="pprice">$5.98</td></tr>
+<tr><td class="pname">Native Body Wash Mini, Coconut &amp; Vanilla Scent <span class="qty">×2</span> <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Native</td>
+              <td class="pprice">$5.98</td></tr>
+<tr><td class="pname">Native Travel Size Aluminum Free Deodorant Solid - Coconut And Vanilla</td>
+              <td class="pbrand">Native</td>
+              <td class="pprice">$3.98</td></tr>
+<tr><td class="pname">Native Travel Size Aluminum Free Deodorant Solid - Sea Salt And Cedar</td>
+              <td class="pbrand">Native</td>
+              <td class="pprice">$3.98</td></tr>
+<tr><td class="pname">Native Liquid Hand Soap - Coconut &amp; Vanilla</td>
+              <td class="pbrand">Native</td>
+              <td class="pprice">$5.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$18.88</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">13.7%<span> off</span></div>
+              <div class="spend">retail $21.88 · save $3.00 · 4 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84050047" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Powder</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Fresh</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Original Clean</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$4.97</td></tr>
+<tr><td class="pname">Dove Advanced Care Antiperspirant Deodorant - Peach &amp; Chamomile Tea</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$6.97</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$20.63</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">19.5%<span> off</span></div>
+              <div class="spend">retail $25.63 · save $5.00 · 9 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046229" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Sensodyne, Advil, Tums</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
+        </a></div>
+          
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Sensodyne Pronamel Gentle Whitening Enamel Toothpaste for Sensitive Teeth and Cavity Protection, Alpine Breeze</td>
+              <td class="pbrand">Sensodyne</td>
+              <td class="pprice">$1.99</td></tr>
+<tr><td class="pname">Sensodyne Extra Whitening Sensitive Teeth Whitening Toothpaste</td>
+              <td class="pbrand">Sensodyne</td>
+              <td class="pprice">$1.99</td></tr>
+<tr><td class="pname">Advil Pain Reliever and Fever Reducer, Ibuprofen 200mg for Pain Relief</td>
+              <td class="pbrand">Advil</td>
+              <td class="pprice">$2.47</td></tr>
+<tr><td class="pname">Tums Smoothies Chewable Extra Strength Antacid Tablets for Heartburn Relief, Assorted Fruit</td>
+              <td class="pbrand">Tums</td>
+              <td class="pprice">$2.50</td></tr>
+<tr><td class="pname">Tums Chewable Antacid Tablets for Extra Strength Heartburn Relief, Assorted Fruit Flavors - 8 Count Rolls (Pack of 3)</td>
+              <td class="pbrand">Tums</td>
+              <td class="pprice">$2.68</td></tr>
+<tr><td class="pname">Polident Overnight Whitening Antibacterial Dental Appliance Cleanser Tablets</td>
+              <td class="pbrand">Polident</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Polident 3 Minute Antibacterial Dental Appliance Cleanser Tablets</td>
+              <td class="pbrand">Polident</td>
+              <td class="pprice">$2.97</td></tr>
+<tr><td class="pname">Advil Pain Reliever and Fever Reducer, Ibuprofen 200mg for Pain Relief - 20 Coated Tablets</td>
+              <td class="pbrand">Advil</td>
+              <td class="pprice">$3.78</td></tr>
+<tr><td class="pname">Advil Dual Action Coated Caplets with Acetaminophen, 125mg Ibuprofen and 250mg Acetaminophen Per Caplet for 8 Hour Pain Relief</td>
+              <td class="pbrand">Advil</td>
+              <td class="pprice">$4.28</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div>
+<div class="card vcard">
+          <div class="card-head">
+            <div class="savings oop">
+              <span class="save-lbl">pay</span>
+              <span class="save-amt">$21.92</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">21.5%<span> off</span></div>
+              <div class="spend">retail $27.92 · save $6.00 · 10 items</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <div class="v-bonus">＋ item coupons: $1 off</div>
+          <details class="basket">
+            <summary>Cheapest basket that qualifies</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th></tr></thead>
+              <tbody><tr><td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$1.97</td></tr>
+<tr><td class="pname">Dove Intensive-Cream Nourishing Care</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$2.12</td></tr>
+<tr><td class="pname">Vaseline Cocoa Butter Petroleum Jelly <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$2.48</td></tr>
+<tr><td class="pname">Vaseline Advanced Formula Lip Therapy</td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$2.48</td></tr>
+<tr><td class="pname">Dove Beauty Cream</td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$2.49</td></tr>
+<tr><td class="pname">Vaseline Original Petroleum Jelly <span class="itemtag">+coupon</span></td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$2.50</td></tr>
+<tr><td class="pname">Vaseline Lip Therapy Original Lip Balm</td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$3.47</td></tr>
+<tr><td class="pname">Vaseline Lip Therapy Rosy Lips Mini</td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$3.47</td></tr>
+<tr><td class="pname">Vaseline Travel Size Lip Therapy Cocoa Butter Lip Balm</td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$3.47</td></tr>
+<tr><td class="pname">Vaseline Lip Therapy Crème Brulee</td>
+              <td class="pbrand">Vaseline</td>
+              <td class="pprice">$3.47</td></tr></tbody>
+            </table>
+            <p class="basket-note">The cheapest real items that trip this coupon (plus any item coupons on them). Out-of-pocket = retail − every coupon that fires. Prices are HEB online each-price at scrape time.</p>
+          </details>
+        </div></div>
+    </section>
+  </div>
 
   <div class="section-title" id="coupons">All your basket coupons right now (30)</div>
   <div class="ref"><div class="ref-scroll"><table>
@@ -1023,7 +2035,20 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
 <footer><div class="wrap">Made for Natalie with love 💚 · coupons rotate weekly, so check back for a fresh set · snapshot 2026-07-05</div></footer>
 
 <script>
-// let the viewer's theme toggle win in both directions (data-theme is set by host)
+function showTab(name){
+  var panels=['savings','value'];
+  panels.forEach(function(p){
+    document.getElementById('panel-'+p).hidden = (p!==name);
+    var t=document.getElementById('tab-'+p);
+    t.classList.toggle('active', p===name);
+    t.setAttribute('aria-selected', p===name ? 'true':'false');
+  });
+  if(history.replaceState) history.replaceState(null,'','#'+name);
+}
+// stat tiles that point at the value tab should switch to it
+document.addEventListener('DOMContentLoaded',function(){
+  if(location.hash==='#value') showTab('value');
+});
 </script>
 </body>
 </html>
