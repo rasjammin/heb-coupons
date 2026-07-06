@@ -125,6 +125,26 @@ h3.sub .sub-note{text-transform:none;letter-spacing:0;font-weight:400;color:var(
 .cnt.cnt3{background:var(--red-soft);color:var(--red)}
 .basket-note{font-size:11px;color:var(--faint);margin:10px 2px 2px;line-height:1.45}
 
+.loaded-break{font-size:11.5px;color:var(--faint);margin-top:3px}
+.itemtag{display:inline-block;font-size:9.5px;font-weight:700;color:var(--green);
+  background:var(--green-soft);padding:0 5px;border-radius:10px;vertical-align:1px;letter-spacing:.02em}
+.qty{display:inline-block;font-size:10px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.bonus{margin:2px 0 10px;border:1px dashed var(--green);border-radius:10px;background:var(--green-soft);padding:2px 12px}
+.bonus summary{font-size:12.5px;font-weight:700;color:var(--green);cursor:pointer;list-style:none;padding:8px 0;user-select:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bonus summary::-webkit-details-marker{display:none}
+.bonus summary::before{content:"＋";font-weight:800}
+.bonus[open] summary::before{content:"−"}
+.bcount{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.bonus-list{display:flex;flex-direction:column;gap:6px;padding:4px 0 8px}
+.bonus-item{display:flex;gap:11px;align-items:baseline;text-decoration:none;
+  background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;transition:border-color .12s}
+.bonus-item:hover{border-color:var(--green)}
+.bval{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;min-width:48px;font-size:14px}
+.bdesc{font-size:12.5px;line-height:1.35}
+.bdesc b{font-weight:700}
+.bnote{color:var(--muted);font-size:11px}
+.bon{color:var(--faint);font-size:11px}
+
 /* reference */
 .ref{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
 .ref-scroll{overflow-x:auto}
@@ -176,12 +196,12 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
     </span>
   </div>
   <h1>Hi Natalie — here's how to save the most at H‑E‑B.</h1>
-  <p class="lede">H‑E‑B lets one product count toward <b>several</b> "spend $X, save $Y" coupons at the same time. So if you build your basket right, the same items trigger multiple coupons and the discounts pile up. I scanned <b>all 935</b> of your live coupons — these are the baskets where they stack the hardest. <b>Tap any tile</b> to jump in.</p>
+  <p class="lede">H‑E‑B lets one product count toward <b>several</b> coupons at the same time — the "spend $X, save $Y" basket coupons <em>and</em> the item coupons (like "$6 off 2 AXE") on those same products. Build your basket right and they all fire on one checkout. I scanned <b>all 935</b> of your live coupons — these are the baskets where they stack the hardest. <b>Tap any tile</b> to jump in.</p>
   <div class="stats">
-    <a class="stat" href="#cluster-1"><div class="n red">$20.00</div><div class="l">Biggest stack <span class="go">›</span></div></a>
-    <a class="stat" href="#cluster-1"><div class="n green">45%</div><div class="l">Best discount <span class="go">›</span></div></a>
-    <a class="stat" href="#coupons"><div class="n">30</div><div class="l">Coupons live <span class="go">›</span></div></a>
-    <a class="stat" href="#how"><div class="n">372</div><div class="l">Multi‑coupon items <span class="go">›</span></div></a>
+    <a class="stat" href="#cluster-1"><div class="n red">$28.50</div><div class="l">Biggest stack <span class="go">›</span></div></a>
+    <a class="stat" href="#cluster-1"><div class="n green">48%</div><div class="l">Best discount <span class="go">›</span></div></a>
+    <a class="stat" href="#coupons"><div class="n">30</div><div class="l">Basket coupons <span class="go">›</span></div></a>
+    <a class="stat" href="#how"><div class="n">901</div><div class="l">Item coupons <span class="go">›</span></div></a>
   </div>
   <div class="asof">Snapshot 2026-07-05 · from your H‑E‑B account · prices = H‑E‑B online each-price when I checked</div>
 </div></header>
@@ -190,19 +210,20 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
   <section class="cluster" id="cluster-1">
           <div class="cluster-head">
             <span class="cluster-tag">Stackable cluster 1</span>
-            <h2>Nexxus, Degree Men, Dove, Dove Men+Care, TRESemmé</h2>
-            <p class="cluster-sub">5 coupons in the biggest stack · 54 viable combinations found</p>
+            <h2>Nexxus, Dove, Dove Men+Care, TRESemmé</h2>
+            <p class="cluster-sub">5 coupons in the biggest stack · 49 viable combinations found</p>
           </div>
           <h3 class="sub">Max stack <span class="sub-note">every compatible coupon on one basket</span></h3>
           <div class="card featured">
           <div class="card-head">
             <div class="savings">
-              <span class="save-amt">$20.00</span>
+              <span class="save-amt">$28.50</span>
               <span class="save-lbl">off</span>
             </div>
             <div class="save-detail">
-              <div class="pct">26.4%<span> saved</span></div>
-              <div class="spend">on a $75.86 basket · 5 coupons · 12 items</div>
+              <div class="pct">44.7%<span> saved</span></div>
+              <div class="spend">on a $63.76 basket · 8 items</div>
+              <div class="loaded-break">$20.00 basket coupons + $8.50 item coupons</div>
             </div>
           </div>
           <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
@@ -210,10 +231,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Nexxus</span>
           <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
         </a>
-<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
           <span class="chip-reward">$2 off $6 (select items)</span>
-          <span class="chip-brands">Degree Men</span>
-          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+          <span class="chip-brands">Dove</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
         </a>
 <a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
           <span class="chip-reward">$5 off $15 (select items)</span>
@@ -230,148 +251,79 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Dove, Dove Men+Care</span>
           <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
         </a></div>
+          <details class="bonus" open>
+              <summary>Bonus coupons on these items <span class="bcount">+$8.50 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
+                  <span class="bval">$4.50</span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Prep &amp; Protect Heat Defense Spray</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care Clean Comfort Deodorant Stick</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>12 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
           <details class="basket" open>
             <summary>Sample basket — one way to hit every threshold</summary>
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$1.97</td>
+              <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
+              <td class="pname">Dove Care &amp; Protect Antibacterial Hand Wash</td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Energy</td>
-              <td class="pbrand">Degree Men</td>
-              <td class="pprice">$4.97</td>
+              <td class="pname">Dove Men+Care Sensitive Shield Antiperspirant Deodorant <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Fresh</td>
+              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Citrus</td>
-              <td class="pbrand">Degree Men</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Deep Moisture Body Wash</td>
+              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Original Clean</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pname">Dove Men+Care Clean Comfort Deodorant Stick <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Invisible Solid Antiperspirant Deodorant - Powder</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Advanced Care Antiperspirant Deodorant - Peach &amp; Chamomile Tea</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$6.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Nexxus Hydra-Light for Normal Weightless Moisture Conditioner</td>
+              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
-              <td class="pprice">$13.58</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Nexxus Hydralight Weightless Moisture Shampoo</td>
-              <td class="pbrand">Nexxus</td>
-              <td class="pprice">$13.58</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
             </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
           </details>
         </div>
           <h3 class="sub">Focused sub-stacks <span class="sub-note">smaller baskets, higher % — pick what you'll actually buy</span></h3>
             <div class="grid"><div class="card">
           <div class="card-head">
             <div class="savings">
-              <span class="save-amt">$12.00</span>
+              <span class="save-amt">$14.50</span>
               <span class="save-lbl">off</span>
             </div>
             <div class="save-detail">
-              <div class="pct">44.7%<span> saved</span></div>
-              <div class="spend">on a $26.82 basket · 3 coupons · 6 items</div>
-            </div>
-          </div>
-          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045571" target="_blank" rel="noopener">
-          <span class="chip-reward">$2 off $6 (select items)</span>
-          <span class="chip-brands">Degree Men</span>
-          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
-        </a>
-<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
-          <span class="chip-reward">$5 off $15 (select items)</span>
-          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
-          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
-        </a>
-<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
-          <span class="chip-reward">$5 off $25 (select items)</span>
-          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
-          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
-        </a></div>
-          <details class="basket">
-            <summary>Sample basket — one way to hit every threshold</summary>
-            <table>
-              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
-              <tbody><tr>
-              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$1.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Energy</td>
-              <td class="pbrand">Degree Men</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Degree Men Deep Cleansing All Day Fresh Body Wash - Citrus</td>
-              <td class="pbrand">Degree Men</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Deep Moisture Body Wash</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
-            </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
-          </details>
-        </div>
-<div class="card">
-          <div class="card-head">
-            <div class="savings">
-              <span class="save-amt">$10.00</span>
-              <span class="save-lbl">off</span>
-            </div>
-            <div class="save-detail">
-              <div class="pct">36.8%<span> saved</span></div>
-              <div class="spend">on a $27.16 basket · 2 coupons · 2 items</div>
+              <div class="pct">45.4%<span> saved</span></div>
+              <div class="spend">on a $31.94 basket · 2 items</div>
+              <div class="loaded-break">$10.00 basket coupons + $4.50 item coupons</div>
             </div>
           </div>
           <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
@@ -384,38 +336,47 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
           <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
         </a></div>
+          <details class="bonus">
+              <summary>Bonus coupons on these items <span class="bcount">+$4.50 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
+                  <span class="bval">$4.50</span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Comb Thru Volume Finishing Mist</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>14 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
           <details class="basket">
             <summary>Sample basket — one way to hit every threshold</summary>
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Nexxus Hydra-Light for Normal Weightless Moisture Conditioner</td>
+              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
-              <td class="pprice">$13.58</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Nexxus Hydralight Weightless Moisture Shampoo</td>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Nexxus</td>
-              <td class="pprice">$13.58</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
             </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
           </details>
         </div>
 <div class="card">
           <div class="card-head">
             <div class="savings">
-              <span class="save-amt">$12.00</span>
+              <span class="save-amt">$21.50</span>
               <span class="save-lbl">off</span>
             </div>
             <div class="save-detail">
-              <div class="pct">32.7%<span> saved</span></div>
-              <div class="spend">on a $36.73 basket · 3 coupons · 9 items</div>
+              <div class="pct">44.9%<span> saved</span></div>
+              <div class="spend">on a $47.85 basket · 5 items</div>
+              <div class="loaded-break">$15.00 basket coupons + $6.50 item coupons</div>
             </div>
           </div>
-          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
-          <span class="chip-reward">$2 off $6 (select items)</span>
-          <span class="chip-brands">Dove</span>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Nexxus</span>
           <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
         </a>
 <a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
@@ -428,74 +389,137 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
           <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
         </a></div>
+          <details class="bonus">
+              <summary>Bonus coupons on these items <span class="bcount">+$6.50 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
+                  <span class="bval">$4.50</span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Prep &amp; Protect Heat Defense Spray</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>13 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
           <details class="basket">
             <summary>Sample basket — one way to hit every threshold</summary>
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Beauty Bar Gentle Skin Cleanser Original</td>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$1.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Limited Edition FIFA Liquid Hand Soap - Palo Santo &amp; Sage Oil</td>
+              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
+              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
+              <td class="pname">Dove Moisturizing Body Wash Limited Edition - Watermelon &amp; Guava Nectar <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
+              <td class="pprice">$7.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Care &amp; Protect Antibacterial Hand Wash</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Liquid Hand Soap - Limited Edition Watermelon &amp; Guava Nectar</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Refreshing Body Wash - Cucumber &amp; Green Tea</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Deep Moisture Body Wash</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.97</td>
+              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
             </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
           </details>
         </div>
 <div class="card">
           <div class="card-head">
             <div class="savings">
-              <span class="save-amt">$9.00</span>
+              <span class="save-amt">$17.00</span>
               <span class="save-lbl">off</span>
             </div>
             <div class="save-detail">
-              <div class="pct">30.5%<span> saved</span></div>
-              <div class="spend">on a $29.53 basket · 3 coupons · 7 items</div>
+              <div class="pct">42.7%<span> saved</span></div>
+              <div class="spend">on a $39.85 basket · 5 items</div>
+              <div class="loaded-break">$13.00 basket coupons + $4.00 item coupons</div>
             </div>
           </div>
-          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045217" target="_blank" rel="noopener">
-          <span class="chip-reward">$2 off $6 (select items)</span>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045572" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Dove, Dove Men+Care, Baby Dove</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045989" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $25 (select items)</span>
+          <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
+          <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a>
+<a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84050047" target="_blank" rel="noopener">
+          <span class="chip-reward">$3 off $15 (select items)</span>
           <span class="chip-brands">Dove, Dove Men+Care</span>
           <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
+        </a></div>
+          <details class="bonus">
+              <summary>Bonus coupons on these items <span class="bcount">+$4.00 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058797" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Men+Care Clean Comfort Deodorant Stick</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058510" target="_blank" rel="noopener">
+                  <span class="bval">$2.00</span>
+                  <span class="bdesc"><b>$2 off</b><br><span class="bon">on Dove Gentle Exfoliating Body Wash - Sea Minerals</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>13 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
+          <details class="basket">
+            <summary>Sample basket — one way to hit every threshold</summary>
+            <table>
+              <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
+              <tbody><tr>
+              <td class="pname">Dove Men+Care Sensitive Shield Antiperspirant Deodorant <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Gentle Exfoliating Body Wash - Sea Minerals <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Invigorating Body Wash - Aloe &amp; Eucalyptus Oil <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Body Scrub - Brown Sugar &amp; Coconut Butter <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
+<tr>
+              <td class="pname">Dove Men+Care Clean Comfort Deodorant Stick <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Dove Men+Care</td>
+              <td class="pprice">$7.97</td>
+              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
+            </table>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
+          </details>
+        </div>
+<div class="card">
+          <div class="card-head">
+            <div class="savings">
+              <span class="save-amt">$16.50</span>
+              <span class="save-lbl">off</span>
+            </div>
+            <div class="save-detail">
+              <div class="pct">41.4%<span> saved</span></div>
+              <div class="spend">on a $39.88 basket · 4 items</div>
+              <div class="loaded-break">$12.00 basket coupons + $4.50 item coupons</div>
+            </div>
+          </div>
+          <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045221" target="_blank" rel="noopener">
+          <span class="chip-reward">$5 off $15 (select items)</span>
+          <span class="chip-brands">Nexxus</span>
+          <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-14</span>
         </a>
 <a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84045230" target="_blank" rel="noopener">
           <span class="chip-reward">$2 off $6 (select items)</span>
@@ -507,21 +531,19 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Dove, TRESemmé, Dove Men+Care</span>
           <span class="chip-meta"><span class="clip-on">clipped</span> · exp 2026-07-14</span>
         </a></div>
+          <details class="bonus">
+              <summary>Bonus coupons on these items <span class="bcount">+$4.50 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84058169" target="_blank" rel="noopener">
+                  <span class="bval">$4.50</span>
+                  <span class="bdesc"><b>$4.50 off</b><br><span class="bon">on Nexxus Comb Thru Volume Finishing Mist</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>14 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
           <details class="basket">
             <summary>Sample basket — one way to hit every threshold</summary>
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Dove Limited Edition FIFA Liquid Hand Soap - Palo Santo &amp; Sage Oil</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Advanced Care Shea Butter &amp; Warm Vanilla Hand Wash</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
               <td class="pname">Dove Advanced Care Deep Moisture Hand Wash</td>
               <td class="pbrand">Dove</td>
               <td class="pprice">$3.97</td>
@@ -532,22 +554,17 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
               <td class="pprice">$3.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Liquid Hand Soap - Limited Edition Watermelon &amp; Guava Nectar</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$3.97</td>
+              <td class="pname">Nexxus Prep &amp; Protect Heat Defense Spray <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Dove Shampoo Anti-Frizz Oil Therapy</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.84</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Dove Bond Strength + Peptide Complex Conditioner</td>
-              <td class="pbrand">Dove</td>
-              <td class="pprice">$4.84</td>
+              <td class="pname">Nexxus Comb Thru Volume Finishing Mist <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Nexxus</td>
+              <td class="pprice">$15.97</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr></tbody>
             </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
           </details>
         </div></div>
         </section>
@@ -561,12 +578,13 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <div class="card featured">
           <div class="card-head">
             <div class="savings">
-              <span class="save-amt">$13.00</span>
+              <span class="save-amt">$15.06</span>
               <span class="save-lbl">off</span>
             </div>
             <div class="save-detail">
-              <div class="pct">26.0%<span> saved</span></div>
-              <div class="spend">on a $50.04 basket · 2 coupons · 28 items</div>
+              <div class="pct">24.6%<span> saved</span></div>
+              <div class="spend">on a $61.13 basket · 22 items</div>
+              <div class="loaded-break">$13.00 basket coupons + $2.06 item coupons</div>
             </div>
           </div>
           <div class="chips"><a class="chip" href="https://www.heb.com/digital-coupon/coupon-detail/84046369" target="_blank" rel="noopener">
@@ -579,152 +597,139 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
           <span class="chip-brands">Gerber, H-E-B, Huggies</span>
           <span class="chip-meta"><span class="clip-off">clip it</span> · exp 2026-07-07</span>
         </a></div>
+          <details class="bonus" open>
+              <summary>Bonus coupons on these items <span class="bcount">+$2.06 extra</span></summary>
+              <div class="bonus-list"><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84054484" target="_blank" rel="noopener">
+                  <span class="bval">$1.00</span>
+                  <span class="bdesc"><b>$1 off</b><br><span class="bon">on Plum Organics Teensy Snacks Variety Pack - Peach &amp; Mixed Berry</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84046569" target="_blank" rel="noopener">
+                  <span class="bval">$0.81</span>
+                  <span class="bdesc"><b>25% off</b> <span class="bnote">25% off</span><br><span class="bon">on Gerber Soft Baked Grain Bars - Strawberry Banana</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84057295" target="_blank" rel="noopener">
+                  <span class="bval">$0.25</span>
+                  <span class="bdesc"><b>25¢ off</b><br><span class="bon">on Huggies Natural Care Sensitive Baby Wipes - Fragrance Free</span></span>
+                </a><a class="bonus-item" href="https://www.heb.com/digital-coupon/coupon-detail/84046573" target="_blank" rel="noopener">
+                  <span class="bval">—</span>
+                  <span class="bdesc"><b>Buy 5, get 1 free</b> <span class="bnote">free item (value varies)</span><br><span class="bon">on Pumpkin Tree Organics Fruit Puree - Strawberry &amp; Banana</span></span>
+                </a></div>
+              <p class="basket-note">These item coupons apply to items already in the basket above — they fire <b>on top of</b> the basket coupons (the spend already includes buying them). %-off and buy-more values are estimated from the item's price. There are <b>7 more</b> item coupons on other products in this basket's brands — add those items to save even more.</p>
+            </details>
           <details class="basket" open>
             <summary>Sample basket — one way to hit every threshold</summary>
             <table>
               <thead><tr><th>Product</th><th>Brand</th><th class="pprice">Price</th><th class="pcount" title="how many of the stacked coupons this item counts toward">Counts</th></tr></thead>
               <tbody><tr>
-              <td class="pname">Plum Organics Teensy Soft Fruit Snacks - Berry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$2.83</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
               <td class="pname">Plum Organics Teensy Snacks with Puffed Quinoa - Berry</td>
               <td class="pbrand">Plum Organics</td>
               <td class="pprice">$2.83</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Blueberry &amp; Oatmeal</td>
+              <td class="pname">Plum Organics Teensy Soft Fruit Snacks - Berry</td>
               <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$3.26</td>
+              <td class="pprice">$2.83</td>
               <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
 <tr>
-              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bars - Apple Kale &amp; Oatmeal</td>
+              <td class="pname">Pumpkin Tree Organics Baby Food Pouch - Apple &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit &amp; Vegetable Puree - Apple Carrot &amp; Pumpkin <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit Puree - Strawberry &amp; Banana <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Mango &amp; Orange <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit Puree - Banana Raspberry &amp; Blueberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Pumpkin Tree Organics Fruit &amp; Vegetable Puree - Banana Mango Broccoli &amp; Kale <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Pumpkin Tree Organics</td>
+              <td class="pprice">$1.97</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Natural Care Sensitive Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Extra Large Baby Wipes - Fragrance Free <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Simply Clean Baby Wipes - Unscented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Simply Clean Baby Wipes - Fresh Scent <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Huggies Baby Wipes - Cucumber, Aloe and Vitamin E Scented <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Huggies</td>
+              <td class="pprice">$2.27</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Fruit Juice - Apple Prune <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.22</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Stage 2 Baby Food Starter Kit - Carrot Green Bean &amp; Sweet Potato, 4 oz Tubs <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.37</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Stage 1 Baby Food Starter Kit - Banana Pear &amp; Apple, 2 oz Tubs <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.37</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Soft Baked Grain Bars - Strawberry Banana <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Soft Baked Grain Bars - Apple Cinnamon <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Snacks for Baby Teethers - Banana &amp; Peach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Snacks for Baby Teethers - Strawberry Apple &amp; Spinach <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Gerber Snacks for Baby Teethers - Mango &amp; Raspberry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
+              <td class="pbrand">Gerber</td>
+              <td class="pprice">$3.47</td>
+              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
+<tr>
+              <td class="pname">Plum Organics Teensy Snacks Variety Pack - Peach &amp; Mixed Berry <span class="itemtag" title="an item coupon also applies to this product">+coupon</span></td>
               <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$3.26</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Plum Organics Jammy Sammy Snack Size Sandwich Bar - Peanut Butter &amp; Strawberry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$3.26</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Plum Organics Mighty Puffs - Carrot + Broccoli</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$3.98</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Plum Organics Mighty Puffs - Beet + Strawberry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$3.98</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Plum Organics Mighty Snack Bars - Blueberry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$5.16</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">Plum Organics Mighty Snack Bars - Strawberry</td>
-              <td class="pbrand">Plum Organics</td>
-              <td class="pprice">$5.16</td>
-              <td class="pcount"><span class="cnt cnt2">2×</span></td></tr>
-<tr>
-              <td class="pname">FruityU Organic Baby Food Pouch - Pear Sweet Potato &amp; Carrot</td>
-              <td class="pbrand">FruityU</td>
-              <td class="pprice">$0.78</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">FruityU Organic Baby Food Pouch - Apple Carrot Butternut Squash Chia</td>
-              <td class="pbrand">FruityU</td>
-              <td class="pprice">$0.78</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Travel Pack Wipes - Fragrance Free</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.78</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Banana Apple &amp; Plum</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Apple &amp; Mango</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Banana Apple Apricot</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Apple Mango &amp; Spinach</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Apple Oatmeal &amp; Cinnamon</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Pear Spinach Pouch</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Apple &amp; Banana</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Apple Pear &amp; Spinach</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Apple &amp; Sweet Potato</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Apple &amp; Carrot</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch – Banana Blueberry Apple &amp; Oatmeal</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Apple Banana Strawberry &amp; Blackberry</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Food Pouch - Apple</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.87</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Organics Food Pouch – Banana Kiwi</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.89</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Organics Food Pouch – Apple Oatmeal Cinnamon</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.89</td>
-              <td class="pcount"><span class="cnt cnt1">1×</span></td></tr>
-<tr>
-              <td class="pname">H-E-B Baby Organics Food Pouch – Banana Butternut Squash</td>
-              <td class="pbrand">H-E-B</td>
-              <td class="pprice">$0.89</td>
+              <td class="pprice">$4.99</td>
               <td class="pcount"><span class="cnt cnt1">1×</span></td></tr></tbody>
             </table>
-            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many of the stacked coupons this single item advances at once — that overlap is what makes the stack work.</p>
+            <p class="basket-note">Prices are HEB online each-price at scrape time. "Counts" = how many basket coupons this item advances at once. "+coupon" = an item coupon also applies (see bonus coupons above).</p>
           </details>
         </div>
           
@@ -1008,9 +1013,10 @@ footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--faint);f
   <div class="section-title" id="how">How to actually use this</div>
   <div class="how">
     <h3>The move</h3>
-    <p>Every card above is <b>one HEB checkout</b>. Clip all the coupons in a card (tap each chip), add items that satisfy each coupon's dollar threshold, and every coupon fires on the same basket. Items marked <b>2×</b> or <b>3×</b> count toward that many coupons at once — those are the ones doing the heavy lifting.</p>
+    <p>Every card above is <b>one HEB checkout</b>. Clip all the coupons in a card (tap each chip), add items that satisfy each coupon's dollar threshold, and every coupon fires on the same basket. Items marked <b>2×</b> or <b>3×</b> count toward that many basket coupons at once — those are the ones doing the heavy lifting.</p>
+    <p><b>Bonus coupons</b> (the green <b>＋</b> section) are item coupons — like "$6 off 2 AXE" — that apply to products already in the basket. Buy those items and the item coupon fires <b>on top of</b> the basket coupons. That's the difference between the basket total and the bigger "loaded" total on each card. Products with a green <b>+coupon</b> tag in the basket are the ones that carry one.</p>
     <p>The <b>sample basket</b> is just <b>one</b> cheapest way to reach the thresholds — swap in the specific products you actually want (open the coupon to see all eligible items). As long as your spend in each coupon's product set clears its threshold, the discount applies.</p>
-    <p><b>Standalone coupons</b> in the reference table don't stack with another basket coupon, but they're still good on their own and can layer item-level coupons on top.</p>
+    <p>Bonus values for <b>percent-off</b> and <b>buy-more</b> coupons are estimates from the item's price, so treat the loaded total as a close ballpark, not a guarantee. Standalone basket coupons in the table don't stack with another basket coupon, but they still carry their own bonus item coupons.</p>
   </div>
 </div></main>
 
